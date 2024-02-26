@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Basic Type</title>
+        <title>Component Format</title>
         <meta charset="UTF-8">   
         <style>
             html, body {
@@ -21,145 +21,118 @@
         <script src="https://hightopo.com/guide/lib/core/ht.js"></script>   
         <script>
             function init() {
-                dataModel = new ht.DataModel();
-                graphView = new ht.graph.GraphView(dataModel);
-                view = graphView.getView();
+                var dataModel = new ht.DataModel(),
+                        graphView = new ht.graph.GraphView(dataModel),
+                        view = graphView.getView();
 
                 view.className = 'main';
                 document.body.appendChild(view);
                 window.addEventListener('resize', function(e) {
                     graphView.invalidate();
                 }, false);
+
+                var points = [
+                    96, 209, 43, 211, -1, 199, 7, 126,
+                    54, 127, 41, 89, 98, 60, 114, 95,
+                    159, -3, 290, 66, 251, 137, 296, 155,
+                    289, 199, 260, 213, 149, 213, 77, 261, 96, 209
+                ],
+                segments = [1, 2, 4, 4, 4, 4, 2, 2, 2];
                 
-                ht.Default.setImage('basic', {
-                    width: 750,
-                    height: 120,
+                ht.Default.setImage('cloud-opacity', {
+                    width: 300,
+                    height: 300,
                     comps: [
                         {
-                            type: 'rect',
-                            rect: [10, 20, 130, 80],
-                            borderWidth: 1,
-                            borderColor: '#34495E',
-                            background: '#E74C3C',
-                            depth: 5
-                        },  
-                        {
-                            type: 'oval',
-                            rect: [160, 20, 130, 80],
-                            borderWidth: 12,
-                            border3d: true,
-                            borderPattern: [12, 12],
-                            borderColor: '#34495E'
-                        },
-                        {
-                            type: 'polygon',
-                            polygonSide: 7,
-                            rect: [310, 20, 130, 80],
-                            borderWidth: 10,                                                        
-                            borderJoin: 'miter',
-                            borderColor: '#34495E',
-                            background: '#3498DB',
-                            gradient: 'spread.vertical',
-                            gradientColor: 'white'
-                        },
-                        {
-                            type: 'star',
-                            rect: [460, 20, 130, 80],
-                            background: 'red',
-                            gradient: 'radial.center',
-                            gradientColor: 'yellow'
-                        },
-                        {
-                            type: 'arc',
-                            rect: [610, 20, 130, 80],
-                            arcFrom: Math.PI / 2,
-                            arcTo: Math.PI * 2,
-                            arcClose: false,
-                            borderWidth: 6,
-                            borderColor: 'blue',
-                            dash: true,
-                            dashColor: 'yellow',
-                            dashPattern: [5, 12]
-                        } 
+                            type: 'shape',
+                            points: points,
+                            segments: segments,
+                            background: '#d6f0fd',
+                            gradientColor: '#A6f0fd',
+                            gradient: 'linear.north',
+                            opacity: 0.5
+                        }                       
                     ]
                 });
-                
-                ht.Default.setImage('dash', {
-                    width: 750,
-                    height: 120,
+                ht.Default.setImage('cloud-rotation', {
+                    width: 300,
+                    height: 300,
                     comps: [
                         {
-                            type: 'roundRect',
-                            rect: [10, 20, 130, 80],
-                            borderWidth: 5,
-                            borderColor: 'blue',
-                            repeatImage: 'ie.png',
-                            depth: 5,
-                            dash: true,
-                            dashColor: 'yellow',
-                            cornerRadius: 6
-                        },  
-                        {
-                            type: 'oval',
-                            rect: [160, 20, 130, 80],
-                            borderWidth: 12,
-                            border3d: true,
-                            borderColor: '#34495E',
-                            dash: true,
-                            dashWidth: 8,
-                            dash3d: true,
-                            dashColor: 'red',
-                            dash3dColor: 'yellow',
-                            dashPattern: [16, 16]
-                        },
-                        {
-                            type: 'polygon',
-                            polygonSide: 7,
-                            rect: [310, 20, 130, 80],
-                            borderWidth: 5,                                                        
-                            borderJoin: 'miter',
-                            borderColor: '#34495E',
-                            repeatImage: 'ie.png',
-                            gradient: 'spread.vertical',
-                            gradientColor: 'white',
-                            dash: true,
-                            dashPattern: [10],
-                            dashColor: 'yellow'
-                        },
-                        {
-                            type: 'star',
-                            rect: [460, 20, 130, 80],
-                            background: 'red',
-                            gradient: 'radial.center',
-                            gradientColor: 'yellow',
-                            borderWidth: 2,
-                            borderPattern: [10, 4, 4, 4],
-                            borderColor: '#34495E'
-                        },
-                        {
-                            type: 'arc',
-                            rect: [610, 20, 130, 80],
-                            arcFrom: Math.PI / 2,
-                            arcTo: Math.PI * 2,
-                            arcOval: true,
-                            arcClose: true,
-                            repeatImage: 'ie.png',
-                            gradient: 'radial.center',
-                            gradientColor: 'white'
-                        } 
+                            type: 'shape',
+                            points: points,
+                            segments: segments,
+                            background: '#d6f0fd',
+                            gradientColor: '#A6f0fd',
+                            gradient: 'linear.north',
+                            rotation: Math.PI/4
+                        }                       
                     ]
-                });                
+                });               
+                ht.Default.setImage('cloud-shadow', {
+                    width: 300,
+                    height: 300,
+                    comps: [
+                        {
+                            type: 'shape',
+                            points: points,
+                            segments: segments,
+                            background: '#d6f0fd',
+                            gradientColor: '#A6f0fd',
+                            gradient: 'linear.north',
+                            shadow: true,
+                            shadowColor: '#E74C3C',
+                            shadowBlur: 12,
+                            shadowOffsetX: 6,
+                            shadowOffsetY: 6
+                        }                       
+                    ]
+                }); 
+                ht.Default.setImage('cloud-all', {
+                    width: 300,
+                    height: 300,
+                    comps: [
+                        {
+                            type: 'shape',
+                            points: points,
+                            segments: segments,
+                            background: '#d6f0fd',
+                            gradientColor: '#A6f0fd',
+                            gradient: 'linear.north',
+                            opacity: 0.5,
+                            rotation: Math.PI/4,
+                            shadow: true,
+                            shadowColor: '#E74C3C',
+                            shadowBlur: 12,
+                            shadowOffsetX: 6,
+                            shadowOffsetY: 6
+                        }                       
+                    ]
+                }); 
 
                 var node = new ht.Node();
-                node.setPosition(430, 90);
-                node.setImage('basic');
-                dataModel.add(node);                 
+                node.setPosition(100, 120);
+                node.setSize(160, 160);
+                node.setImage('cloud-opacity');
+                dataModel.add(node);
+                
+                node = new ht.Node();
+                node.setPosition(310, 120);
+                node.setSize(160, 160);
+                node.setImage('cloud-rotation');
+                dataModel.add(node);                
 
                 node = new ht.Node();
-                node.setPosition(430, 230);
-                node.setImage('dash');
-                node.s('image.stretch', 'uniform');
-                dataModel.add(node);
+                node.setPosition(500, 120);
+                node.setSize(160, 160);
+                node.setImage('cloud-shadow');
+                dataModel.add(node); 
+
+                node = new ht.Node();
+                node.setPosition(720, 120);
+                node.setSize(160, 160);
+                node.setImage('cloud-all');
+                dataModel.add(node); 
 
                 graphView.setEditable(true);
             }
@@ -170,3 +143,4 @@
     <body onload="init();">
     </body>
 </html>
+
